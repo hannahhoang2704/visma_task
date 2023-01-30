@@ -9,8 +9,9 @@ class RequestIdentity:
 
     def uri_parsed(self):
         uri_scheme, uri_query = self.uri.split("://")       #split the uri into 2 parts: scheme and query
+        print(uri_scheme, uri_query)
         uri_path, uri_params = uri_query.split("?")         # split query in 2 parts: path and parameters
-
+        print(uri_path, uri_params)
         if uri_scheme != self.scheme or uri_path not in self.valid_paths:
             print("Invalid scheme or path")
             return False
@@ -34,6 +35,8 @@ class RequestIdentity:
                 if not self.params["paymentnumber"].isdigit():
                     return False
                 self.params['paymentnumber'] = int(self.params['paymentnumber'])            #convert string payment number to integer
+                if self.params['paymentnumber'] <= 0:                                        #invalidate the negative integer or 0 payment number
+                    return False
             elif self.params == self.valid_paths[2]:        #sign path
                 if "source" not in self.params or "documentid" not in self.params:
                     return False
@@ -56,4 +59,3 @@ class Client:
 
 client = Client("visma-identity://confirm?source=netvisor&paymentnumber=102226")
 print(client.return_path_params())
-
