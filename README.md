@@ -33,7 +33,7 @@ The class needs to satisfy the following requirements:
 6. Is designed using the practises of object-oriented programming
 7. Implementation needs to have a client, which uses the new class. You can for example implement the client as another class that uses the relevant methods.
 
-#Description
+# <b>Description</b>
 
 The purpose of the task was to design and implement a class to help Visma solutions’ identity management application. The class designed is responsible for identifying the requests it receives and enabling other applications to call on it by using visma-identity scheme. 
 
